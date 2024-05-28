@@ -1,0 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  @apply m-0 p-0 select-none box-border;
+}
+
+body {
+  min-height: 100vh;
+}
+
+@font-face {
+  font-family: "Minebold";
+  src: url("./assets/Minebold.otf");
+}
+
+.Bebas {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Outfit {
+  font-family: "Outfit", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.Circle {
+  border-radius: 81% 19% 71% 29% / 45% 74% 25% 55%;
+}
