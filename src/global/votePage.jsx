@@ -76,18 +76,21 @@ const VotePage = () => {
 
   const submitVote = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await axios.post(`${BASE_URL}/payment`, {
         number_of_vote: amount,
         candidate_id: candidateID,
       });
       if (response.status) {
+        setLoading(false);
         const link = response.data.data.authorization_url;
         window.location.href = link;
       }
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response.data.message);
+      setLoading(false);
     }
   };
 
@@ -169,7 +172,7 @@ const VotePage = () => {
                       ariaLabel="infinity-spin-loading"
                     />
                   ) : (
-                    <p>Vote</p>
+                    <p>Next</p>
                   )}
                 </button>
               </form>

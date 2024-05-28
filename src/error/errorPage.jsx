@@ -1,14 +1,12 @@
-// eslint-disable-next-line react/prop-types
-const ErrorPage = ({ error }) => {
-  console.log("Error occured", error);
+const Error = () => {
   return (
-    <div className="bg-red-600">
-      <p className="">
-        Something went wrong. Try clicking the refresh page button to reload the
-        application. <button className="btn">Refresh page</button>
-      </p>
-    </div>
+    <main className=" h-screen grid place-content-center">
+      <section className="bg-gray-100 shadow-sm flex flex-col gap-4">
+        <h1 className="font-bold">Sorry An Error Occurred</h1>
+        <a href="/">Click Here To Go Back</a>
+      </section>
+    </main>
   );
 };
 
-export default ErrorPage;
+export default Error;
