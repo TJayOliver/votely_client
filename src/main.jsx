@@ -49,7 +49,7 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/global/voted",
+    path: "/global/:candidate_id/voted",
     element: <Transaction />,
     errorElement: <Error />,
   },

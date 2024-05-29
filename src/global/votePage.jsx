@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { fetch } from "../../configurations/fetch";
 import moment from "moment";
 import { Header } from "./components/Header";
@@ -11,9 +11,6 @@ import Footer from "./components/Footer";
 const VotePage = () => {
   const id = useParams();
   const candidateID = id.candidate_id;
-  const link = id.link;
-
-  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [message, setMessage] = useState("");
@@ -21,7 +18,6 @@ const VotePage = () => {
   const [candidateProfile, setCandidateProfile] = useState([]);
   const [pricePerVote, setPricePerVote] = useState([]);
 
-  const [pollDate, setPollDate] = useState("");
   const [pollClosed, setPollClosed] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
 
