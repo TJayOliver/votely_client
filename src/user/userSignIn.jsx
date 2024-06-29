@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import pic from "../assets/9.jpg";
+import pic from "../assets/6.jpg";
 import { ThreeDots } from "react-loader-spinner";
 import { BASE_URL } from "../../configurations/URL";
 
@@ -30,10 +30,7 @@ const UserSignIn = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await axios.post(
-        `${BASE_URL}/user/signin`,
-        userCredentials
-      );
+      const response = await axios.post(`${BASE_URL}/user/signin`, userCredentials);
       const userID = response.data.user.user_id;
       setSuccess(true);
       navigate(`/user`, { state: userID });
@@ -50,17 +47,15 @@ const UserSignIn = () => {
 
   return (
     <>
-      <main className="flex  h-screen justify-center">
+      <main className="flex justify-center h-screen">
         <section
           style={{ backgroundImage: `url('${pic}')` }}
-          className="hidden md:flex object-cover  w-2/4"
+          className="md:flex hidden w-2/4 object-cover"
         ></section>
-        <section className="w-full md:w-2/4 bg-white px-8 flex flex-col">
+        <section className="flex flex-col bg-white px-8 w-full md:w-2/4">
           <div className="m-auto w-2/3">
-            <div className=" md:flex md:flex-row flex flex-col justify-between mb-8 items-center">
-              <p className=" text-5xl whitespace-nowrap font-mineBold">
-                Votely
-              </p>
+            <div className="flex md:flex md:flex-row flex-col justify-between items-center mb-8">
+              <p className="font-mineBold text-5xl whitespace-nowrap">Votely</p>
               <small>@User Panel</small>
             </div>
 
@@ -77,35 +72,35 @@ const UserSignIn = () => {
             ) : null}
 
             <form onSubmit={submitCredentials} className="flex flex-col gap-8">
-              <div className=" flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 <label className="font-medium">Username</label>
                 <input
                   type="email"
                   name="user_name"
                   value={userCredentials.user_name}
                   onChange={handleUserCredentials}
-                  className="border-[0.5px] bg-gray-50 focus:bg-gray-100 outline-none rounded-md px-2 h-10"
+                  className="border-[0.5px] bg-gray-50 focus:bg-gray-100 px-2 rounded-md h-10 outline-none"
                 />
               </div>
 
-              <div className=" flex flex-col gap-4">
+              <div className="flex flex-col gap-4">
                 <label className="font-medium">Password</label>
                 <input
                   type="password"
                   name="user_password"
                   value={userCredentials.user_password}
                   onChange={handleUserCredentials}
-                  className="border-[0.5px] bg-gray-50 focus:bg-gray-100 outline-none rounded-md px-2 h-10"
+                  className="border-[0.5px] bg-gray-50 focus:bg-gray-100 px-2 rounded-md h-10 outline-none"
                 />
               </div>
 
               <a
                 href="/user/forgotpassword"
-                className=" flex justify-center font-medium hover:text-teal-700"
+                className="flex justify-center font-medium hover:text-teal-700"
               >
                 Forgot Password?
               </a>
-              <button className="rounded-md h-10 px-2 bg-[#222831] flex items-center justify-center text-white font-medium hover:bg-[#2c323a]">
+              <button className="flex justify-center items-center bg-[#222831] hover:bg-[#2c323a] px-2 rounded-md h-10 font-medium text-white">
                 {loading ? (
                   <ThreeDots
                     visible={true}
