@@ -21,21 +21,13 @@ const VotePage = () => {
   const [pollClosed, setPollClosed] = useState(false);
   const [scrollPosition, setScrollPosition] = useState(0);
 
-  const voteCost = pricePerVote.map(
-    (pricePerVote) => pricePerVote.price_per_vote
-  );
+  const voteCost = pricePerVote.map((pricePerVote) => pricePerVote.price_per_vote);
 
   // retrieving candidates profile
   useEffect(() => {
     const controller = new AbortController();
     const signal = controller.signal;
-    fetch(
-      `candidate/id/${candidateID}`,
-      setCandidateProfile,
-      setLoading,
-      setMessage,
-      signal
-    );
+    fetch(`candidate/id/${candidateID}`, setCandidateProfile, setLoading, setMessage, signal);
     return () => controller.abort();
   }, [candidateID]);
 
@@ -46,13 +38,7 @@ const VotePage = () => {
     const controller = new AbortController();
     const signal = controller.signal;
 
-    fetch(
-      `user/voteprice/${user_id[0]}`,
-      setPricePerVote,
-      setLoading,
-      setMessage,
-      signal
-    );
+    fetch(`user/voteprice/${user_id[0]}`, setPricePerVote, setLoading, setMessage, signal);
 
     return () => controller.abort();
   }, [candidateProfile]);
@@ -91,9 +77,7 @@ const VotePage = () => {
   };
 
   useEffect(() => {
-    const voteDeadline = pricePerVote.map(
-      (pricePerVote) => pricePerVote.vote_deadline
-    );
+    const voteDeadline = pricePerVote.map((pricePerVote) => pricePerVote.vote_deadline);
     const currentDate = moment().format("YYYY-MM-DD");
     if (moment(currentDate).isAfter(voteDeadline[0])) {
       setPollClosed(true);
@@ -118,18 +102,17 @@ const VotePage = () => {
           <p>Sorry Voting has Ended</p>
         </main>
       ) : (
-        <main className=" max-w-7xl flex flex-col md:w-2/4 m-auto">
+        <main className=" max-w-7xl flex flex-col md:w-2/4 m-auto p-4">
           <section className="h-12 bg-red-400 p-3 mt-3 text-xl">
-            <p className="font-medium">Enter Vote</p>
+            <p className="font-medium text-black">Enter Vote</p>
           </section>
 
-          <section className="max-w-7xl bg-[#E1F7F5] h-[35rem] flex  gap-4 w-full mt-4 rounded-lg p-8">
+          <section className="max-w-7xl bg-[#E1F7F5] md:h-[35rem] flex flex-col-reverse md:flex md:flex-row gap-4 w-full mt-4 rounded-lg p-8">
             <div className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
                 {candidateProfile.map((candidate, id) => (
                   <p key={id} className="Outfit text-2xl">
-                    You have selected to vote for{" "}
-                    <b>{candidate.candidate_name}</b>
+                    You have selected to vote for <b>{candidate.candidate_name}</b>
                   </p>
                 ))}
                 <p className="text-xl">
@@ -140,14 +123,9 @@ const VotePage = () => {
                 </p>
               </div>
 
-              <form
-                onSubmit={submitVote}
-                className="flex flex-col gap-10 justify-between"
-              >
+              <form onSubmit={submitVote} className="flex flex-col gap-10 justify-between">
                 <div className=" flex flex-col gap-4">
-                  <label className="text-black text-xl font-bold">
-                    Enter Amount of Vote
-                  </label>
+                  <label className="text-black text-xl font-bold">Enter Amount of Vote</label>
                   <input
                     type="number"
                     name="number_of_vote"
@@ -178,7 +156,7 @@ const VotePage = () => {
               <img
                 key={id}
                 src={`${BASE_URL}/upload/${candidate.image}`}
-                className="h-full w-96 object-cover flex justify-center m-auto rounded-md"
+                className="h-full w-44 md:w-96 object-cover flex justify-center m-auto rounded-md"
               />
             ))}
           </section>

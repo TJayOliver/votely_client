@@ -49,7 +49,8 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/global/:candidate_id/voted",
+    // path: "/global/:candidate_id/voted",
+    path: "/transaction",
     element: <Transaction />,
     errorElement: <Error />,
   },

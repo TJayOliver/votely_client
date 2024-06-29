@@ -1,107 +1,59 @@
-import phone4 from "./assets/p2.png";
-import { HiMiniInformationCircle } from "react-icons/hi2";
-import { FaSquarePollVertical } from "react-icons/fa6";
-import { SiSpringsecurity } from "react-icons/si";
-import { RiUserFollowFill } from "react-icons/ri";
 import { useState } from "react";
+import video from "./assets/video.mp4";
+import { CiSearch } from "react-icons/ci";
 
 const Homepage = () => {
-  const [hamburger, setHamburger] = useState(false);
+  // const [hamburger, setHamburger] = useState(false);
+  const [searchIcon, setSearchIcon] = useState(true);
+  const hideSearchIcon = () => {
+    setSearchIcon(false);
+  };
+  const displaySearchIcon = () => {
+    setSearchIcon(true);
+  };
   return (
-    <main className="h-screen relative bg-green-600">
-      <section className="text-white flex justify-around items-center py-8">
-        <h1 className="text-7xl font-mineBold">Votely</h1>
-        <div className="hidden md:flex justify-between gap-5 font-medium">
-          <a className="p-2 hover:bg-white hover:rounded-md hover:text-black h-8 flex justify-center items-center duration-100 ease-out">
-            Create a Poll
-          </a>
-          <a className="p-2 hover:bg-white hover:rounded-md hover:text-black h-8 flex justify-center items-center duration-100 ease-in">
-            Sign In
-          </a>
-        </div>
-        <div
-          role="button"
-          onClick={() => setHamburger((prev) => !prev)}
-          className="md:hidden flex gap-1 flex-col"
-        >
-          <div
-            className={
-              hamburger
-                ? "h-1 w-8 rotate-45 -translate-y-0 bg-white  rounded-md ease-in duration-100"
-                : "h-1 w-8 bg-white rounded-md translate-y-0 rotate-0 duration-150"
-            }
-          ></div>
-          <div
-            className={
-              hamburger
-                ? "h-1 w-8 -rotate-45 -translate-y-2 bg-white rounded-md ease-in duration-100"
-                : "h-1 w-8 bg-white rounded-md translate-y-0 rotate-0 duration-150"
-            }
-          ></div>
-          <div
-            className={
-              hamburger
-                ? " -translate-y-8 opacity-0 duration-100 ease-in"
-                : "h-1 w-8 bg-white rounded-md translate-y-0 duration-150 "
-            }
-          ></div>
-        </div>
-      </section>
+    <>
+      <header className="top-0 sticky flex justify-between items-center bg-black p-2 h-24 text-white">
+        <h1 className="text-xl">Votely</h1>
+        <ul className="flex justify-between gap-3">
+          <li>About</li>
+          <li>Competitions</li>
+          <li>Contact Us</li>
+          <li>Terms and Conditions</li>
+        </ul>
+      </header>
+      <main>
+        <section className="top-0 left-0 -z-50 absolute w-full h-full overflow-hidden">
+          <video autoPlay muted loop className="w-full h-full object-cover">
+            <source src={video} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </section>
 
-      <section className="text-white text-4xl absolute top-2/4 -translate-y-2/4 -translate-x-2/4 left-2/4 flex  ">
-        <div className="flex justify-center items-center">
-          <img
-            src={phone4}
-            className="hidden md:flex object-cover h-screen drop-shadow-lg "
-            loading="lazy "
-          />
-          <div className="flex flex-col justify-center">
-            <small className=" text-md ">
-              Experience the Confidence of Secure, Effortless,and Swift Voting!
-            </small>
-            <div className=" items-center justify-center ">
-              <button className="text-sm p-3 bg-white rounded-lg text-black">
-                Search for Polls
-              </button>
-              <input
-                type="search"
-                placeholder="Search for polls"
-                className="hidden w-full p-3 rounded-xl text-black outline-none mt-4 bg-white drop-shadow-md focus-within:bg-white text-sm h-14 placeholder:text-sm placeholder:top-2/4 placeholder:-translate-y-2/4 placeholder:abos placeholder:flex placeholder:items-center placeholder:justify-center"
-              />
+        <section className="relative items-center place-content-center gap-8 grid py-14 text-center Outfit">
+          <div>
+            <p className="font-medium text-3xl">Welcome to</p>
+            <div className="flex flex-col items-center text-8xl">
+              <p>The New Way</p>
+              <p>of Voting</p>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-white h-36 w-full  flex justify-center absolute bottom-8 items-center text-xl">
-        <div className="flex  gap-3 md:gap-8 text-sm ">
-          <div>
-            <div className="flex items-center justify-center gap-2">
-              <HiMiniInformationCircle className="" />
-              <p className="font-medium">About</p>
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center justify-center gap-2">
-              <FaSquarePollVertical className="" />
-              <p className="font-medium">Recent Polls</p>
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center justify-center gap-2">
-              <SiSpringsecurity className="" />
-              <p className="font-medium">Terms & Conditions</p>
-            </div>
-          </div>
-          <div>
-            <div className="flex items-center justify-center gap-2">
-              <RiUserFollowFill className="" />
-              <p className="font-medium">Follow Us</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
+        <section className="flex m-auto max-w-7xl">
+          <form className="relative flex items-center w-full">
+            <CiSearch className={searchIcon ? "right-4 absolute text-3xl " : "hidden"} />
+            <input
+              type="search"
+              placeholder="Enter Event or Organizers Name"
+              onFocus={hideSearchIcon}
+              onBlur={displaySearchIcon}
+              className="border-[0.5px] border-gray-400 bg-gray-50 focus:bg-gray-100 px-2 rounded-md w-full h-10 outline-none"
+            />
+          </form>
+        </section>
+      </main>
+    </>
   );
 };
 

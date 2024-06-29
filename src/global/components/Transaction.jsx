@@ -1,7 +1,9 @@
 import { useLocation, useParams } from "react-router-dom";
 import { BASE_URL } from "../../../configurations/URL";
 import axios from "axios";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { Header } from "../components/Header";
+import Footer from "../components/Footer";
 
 const Transaction = () => {
   const params = useParams();
@@ -10,26 +12,39 @@ const Transaction = () => {
   const getRef = new URLSearchParams(location.search);
   const reference = getRef.get("reference");
 
-  useEffect(() => {
-    const submitReference = async () => {
-      try {
-        await axios.post(`${BASE_URL}/payment/verify`, {
-          reference,
-          candidate_id,
-        });
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-    submitReference();
-  }, [reference, candidate_id]);
+  // useEffect(() => {
+  //   const submitReference = async () => {
+  //     try {
+  //       await axios.post(`${BASE_URL}/payment/verify`, {
+  //         reference,
+  //         candidate_id,
+  //       });
+  //     } catch (error) {
+  //       console.error(error.message);
+  //     }
+  //   };
+  //   submitReference();
+  // }, [reference, candidate_id]);
 
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const position = window.scrollY;
+      setScrollPosition(position);
+    };
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
   return (
-    <main>
-      <p>
-        Succesfully Voted : {reference} {candidate_id}
-      </p>
-    </main>
+    <>
+      <Header scrollPosition={scrollPosition} />
+      <main>
+        
+      </main>
+      <Footer />
+    </>
   );
 };
 
