@@ -11,6 +11,7 @@ import Global from "./global/global";
 import VotePage from "./global/votePage";
 import Homepage from "./Homepage";
 import Transaction from "./global/components/Transaction.jsx";
+import PrivacyPolicy from "./privacypolicy.jsx";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,11 @@ const router = createBrowserRouter([
     // path: "/global/:candidate_id/voted",
     path: "/transaction",
     element: <Transaction />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/privacy",
+    element: <PrivacyPolicy />,
     errorElement: <Error />,
   },
 ]);
