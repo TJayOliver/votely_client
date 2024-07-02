@@ -7,11 +7,12 @@ import UserRegistration from "./user/userRegistration";
 import UserSignIn from "./user/userSignIn";
 import UserPage from "./user/userPage";
 import UserForgotPassword from "./user/userForgotPassword";
-import Global from "./global/global";
-import VotePage from "./global/votePage";
+import Event from "./event/event.jsx";
+import VotePage from "./event/votePage";
 import Homepage from "./Homepage";
-import Transaction from "./global/components/Transaction.jsx";
+import Transaction from "./event/components/Transaction.jsx";
 import PrivacyPolicy from "./privacypolicy.jsx";
+import AllEvents from "./event/allEvents.jsx";
 
 const router = createBrowserRouter([
   {
@@ -40,19 +41,24 @@ const router = createBrowserRouter([
     errorElement: <Error />,
   },
   {
-    path: "/global/:link",
-    element: <Global />,
+    path: "/event/:link",
+    element: <Event />,
     errorElement: <Error />,
   },
   {
-    path: "/global/:link/vote/:candidate_id",
+    path: "/event/:link/vote/:candidate_id",
     element: <VotePage />,
     errorElement: <Error />,
   },
   {
-    // path: "/global/:candidate_id/voted",
+    // path: "/event/:candidate_id/voted",
     path: "/transaction",
     element: <Transaction />,
+    errorElement: <Error />,
+  },
+  {
+    path: "/event/",
+    element: <AllEvents />,
     errorElement: <Error />,
   },
   {

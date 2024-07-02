@@ -5,16 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { ThreeDots } from "react-loader-spinner";
 import { BASE_URL } from "../../configurations/URL";
 // eslint-disable-next-line react/prop-types
-export const TextInput = ({
-  type,
-  label,
-  name,
-  value,
-  onChange,
-  placeholder,
-}) => {
+export const TextInput = ({ type, label, name, value, onChange, placeholder }) => {
   return (
-    <div className=" flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <label className="font-medium">{label}</label>
       <input
         type={type}
@@ -22,7 +15,7 @@ export const TextInput = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        className="border-[0.5px] bg-gray-50 focus:bg-gray-100 outline-none rounded-md px-2 h-10 placeholder:text-sm md:placeholder:text-md"
+        className="border-[0.5px] bg-gray-50 focus:bg-gray-100 px-2 rounded-md h-10 placeholder:text-sm md:placeholder:text-md outline-none"
       />
     </div>
   );
@@ -73,9 +66,7 @@ const UserRegistration = () => {
     } catch (error) {
       if (error.response.status === 400) {
         setLoading(false);
-        const errorMessages = error.response.data.errors.map(
-          (error) => error.msg
-        );
+        const errorMessages = error.response.data.errors.map((error) => error.msg);
         setValidationError(errorMessages);
       }
       setLoading(false);
@@ -84,14 +75,12 @@ const UserRegistration = () => {
   };
 
   return (
-    <main className="flex from-blue-600 to-gray-500 bg-gradient-to-tr h-full justify-center p-2">
-      <section className="w-full h-full md:w-2/4 bg-white px-8 flex flex-col p-2 rounded-md gap-2">
-        <h1 className=" font-mineBold text-center text-5xl p-2 py-3">Votely</h1>
-        <h1 className="text-3xl p-4 font-bold text-center">
-          Create an Account with Ease!
-        </h1>
+    <main className="flex justify-center bg-gradient-to-tr from-blue-600 to-gray-500 p-2 h-full">
+      <section className="flex flex-col gap-2 bg-white px-8 p-2 rounded-md w-full md:w-2/4 h-full">
+        <h1 className="py-3 p-2 font-mineBold text-5xl text-center">Votely</h1>
+        <h1 className="p-4 font-bold text-3xl text-center">Create an Account with Ease!</h1>
         {success ? (
-          <div className="text-white bg-green-600 text-center rounded-md p-2 font-medium mb-2">
+          <div className="bg-green-600 mb-2 p-2 rounded-md font-medium text-center text-white">
             {success}
           </div>
         ) : null}
@@ -152,7 +141,7 @@ const UserRegistration = () => {
             type="text"
             label="Link"
             name="link"
-            placeholder="This Link will be public e.g www.votely.com/global/link"
+            placeholder="This Link will be public e.g www.votely.com/event/link"
             value={userDetails.link}
             onChange={handleUserDetails}
           />
@@ -164,14 +153,14 @@ const UserRegistration = () => {
             onChange={handleUserDetails}
           />
 
-          <div className=" flex flex-col gap-4">
+          <div className="flex flex-col gap-4">
             <label className="font-medium">About Polls</label>
             <textarea
               name="about"
               placeholder="Description about Polls"
               value={userDetails.about}
               onChange={handleUserDetails}
-              className="border-[0.5px] bg-gray-50 focus:bg-gray-100 outline-none rounded-md px-2"
+              className="border-[0.5px] bg-gray-50 focus:bg-gray-100 px-2 rounded-md outline-none"
             />
           </div>
 
@@ -183,7 +172,7 @@ const UserRegistration = () => {
             onChange={handleUserDetails}
           />
 
-          <button className="rounded-md h-10 px-2 bg-[#222831] flex items-center justify-center text-white font-medium hover:bg-[#2c323a]">
+          <button className="flex justify-center items-center bg-[#222831] hover:bg-[#2c323a] px-2 rounded-md h-10 font-medium text-white">
             {loading ? (
               <ThreeDots
                 visible={true}
