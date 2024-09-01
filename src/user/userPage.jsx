@@ -4,7 +4,7 @@ import { fetchByID } from "../../configurations/fetch";
 import { useNavigate, useLocation } from "react-router-dom";
 import { BiSolidCategory } from "react-icons/bi";
 import { FaListCheck, FaListOl, FaUsers } from "react-icons/fa6";
-import { MdAccountCircle } from "react-icons/md";
+import { MdAccountCircle, MdMonetizationOn } from "react-icons/md";
 import { FcOk, FcHighPriority } from "react-icons/fc";
 import { RiEdit2Fill } from "react-icons/ri";
 import { MenuBox } from "./components/MenuBox";
@@ -51,7 +51,6 @@ const UserPage = () => {
 
   const [userProfile, setUserProfile] = useState([]);
   const [userCategory, setUserCategory] = useState([]);
-  const [userCategoryCandidate, setUserCategoryCandidate] = useState([]);
   const [userStatus, setUserStatus] = useState(false);
 
   const [userLink, setUserLink] = useState("");
@@ -93,14 +92,7 @@ const UserPage = () => {
         setMessage,
         signal
       ); // user category
-      fetchByID(
-        "user/candidate/category",
-        UserID,
-        setUserCategoryCandidate,
-        setLoading,
-        setMessage,
-        signal
-      ); // user category candidate
+      
       return () => controller.abort();
     }
   }, [verified, UserID, loading]);
@@ -237,7 +229,7 @@ const UserPage = () => {
                           Welcome, {profile.organization_name}{" "}
                         </h1>
                         <p className="text-xl font-medium">
-                          www.votely.com/global/{profile.link}
+                          www.votely.com/event/{profile.link}
                         </p>
                       </div>
                     ))
@@ -282,16 +274,16 @@ const UserPage = () => {
                   />
                   <MenuBox
                     title="MODIFY"
-                    info="Edit "
+                    info="Edit Account Details"
                     color="bg-violet-200"
                     icon={<RiEdit2Fill />}
                     onClick={handleModify}
                   />
                   <MenuBox
-                    title="ACCOUNTS"
-                    info="View all candidates added"
+                    title="FINANCE"
+                    info="View Total Revenue"
                     color="bg-yellow-500"
-                    icon={<MdAccountCircle />}
+                    icon={<MdMonetizationOn />}
                     // onClick={handleAccount}
                   />
                 </div>
@@ -310,10 +302,8 @@ const UserPage = () => {
                 {viewCandidateTracker && (
                   <UserCandidate
                     GoBack={GoBack}
-                    userCategoryCandidate={userCategoryCandidate}
                     handleCandidateImageName={handleCandidateImageName}
-                    setSuccessMessage={setSuccessMessage}
-                    setErrorMessage={setErrorMessage}
+                    UserID={UserID}
                   />
                 )}
 
@@ -331,7 +321,6 @@ const UserPage = () => {
                 {viewAccountTracker && (
                   <UserAccount
                     GoBack={GoBack}
-                    userCategoryCandidate={userCategoryCandidate}
                     handleCandidateImageName={handleCandidateImageName}
                     setSuccessMessage={setSuccessMessage}
                     setErrorMessage={setErrorMessage}

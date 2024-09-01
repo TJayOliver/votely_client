@@ -60,7 +60,7 @@ const Homepage = () => {
       <Header />
       {/* banner */}
       <aside className="top-0 left-0 -z-50 fixed w-screen h-screen overflow-hidden">
-        <img src={slide} className="absolute inset-0 w-full h-full object-cover" />
+        <img src={voting1} className="absolute inset-0 w-full h-full object-cover" />
       </aside>
 
       <main className="flex flex-col md:gap-8 m-auto mb-14 max-w-7xl">
@@ -109,11 +109,12 @@ const Homepage = () => {
             to={"/event"}
           />
           <HomepageSections
-            buttonName={"Create"}
-            title={"Sign Up to Create a Poll"}
+            buttonName={"Sign In"}
+            title={"Log In and enjoy the experience"}
             color={"bg-[#B6C7AA]"}
             buttonColor={"bg-[#f1eaea]"}
             buttonHoverColor={"bg-gray-100"}
+            to={"/user/signin"}
           />
         </section>
       </main>

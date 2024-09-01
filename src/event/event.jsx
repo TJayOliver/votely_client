@@ -153,7 +153,7 @@ const Event = () => {
                   <div className="bg-[#e1dbd4] p-3 font-bold text-2xl Bebas">
                     <p>{categoryName}</p>
                   </div>
-                  <div className="flex md:flex md:flex-row flex-col justify-between gap-4">
+                  <div className="flex md:flex md:flex-row flex-wrap flex-col gap-4 justify-start">
                     {content.map((content, id) => (
                       <CandidateBox
                         key={id}

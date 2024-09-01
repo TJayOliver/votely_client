@@ -73,7 +73,7 @@ const UserSignIn = () => {
 
             <form onSubmit={submitCredentials} className="flex flex-col gap-8">
               <div className="flex flex-col gap-4">
-                <label className="font-medium">Username</label>
+                <label className="font-medium">Email</label>
                 <input
                   type="email"
                   name="user_name"

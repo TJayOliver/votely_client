@@ -2,7 +2,9 @@
 import { MdDeleteForever } from "react-icons/md";
 import { BackButton } from "./BackButton";
 import { BASE_URL } from "../../../configurations/URL";
-import axios from "axios";
+import axios from "axios"
+import { useEffect } from "react";
+import { fetchByID } from "../../../configurations/fetch";
 
 // eslint-disable-next-line react/prop-types
 const UserCategory = ({
@@ -11,6 +13,7 @@ const UserCategory = ({
   setSuccessMessage,
   setErrorMessage,
 }) => {
+
   const deleteCategory = async (category_id) => {
     try {
       await axios.delete(`${BASE_URL}/category/delete/${category_id}`);

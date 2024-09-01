@@ -7,7 +7,7 @@ export const Header = ({ signOut, link, color }) => {
       <h1 className=" font-mineBold text-5xl text-[#fff]">Votely</h1>
       <div className="hidden md:flex justify-between gap-4">
         <a
-          href={`/global/${link}`}
+          href={`/event/${link}`}
           className="bg-yellow-300 rounded-2xl p-2 font-medium"
         >
           View Page

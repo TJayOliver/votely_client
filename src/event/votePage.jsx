@@ -97,7 +97,7 @@ const VotePage = () => {
   return (
     <>
       <Header scrollPosition={scrollPosition} />
-      {!pollClosed ? (
+      {pollClosed ? (
         <main className="place-content-center grid bg-teal-500 m-auto w-96 h-96">
           <p>Sorry Voting has Ended</p>
         </main>
@@ -156,7 +156,7 @@ const VotePage = () => {
               <img
                 key={id}
                 src={`${BASE_URL}/upload/${candidate.image}`}
-                className="flex justify-center m-auto rounded-md w-44 md:w-96 h-full object-cover"
+                className=" rounded-md md:w-2/4 h-96 object-cover"
               />
             ))}
           </section>
