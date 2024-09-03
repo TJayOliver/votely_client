@@ -29,6 +29,7 @@ const Event = () => {
   const [categoryName, setCategoryName] = useState([]);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [slideShow, setSlideShow] = useState(0);
+  const [voteDeadline, setVoteDeadline] = useState(null);
 
   // use link from params to verify link and ensure user has created category and candidates
   useEffect(() => {
@@ -68,7 +69,12 @@ const Event = () => {
     fetchByID("event/profile", link, setProfile, setLoading, setMessage, signal);
     fetchByID("event/category", link, setCategoryName, setLoading, setMessage, signal);
     return () => controller.abort();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [link]);
+
+  useEffect(()=>{
+    profile.map(vote => setVoteDeadline(vote.vote_deadline))
+  },[profile])
 
   const fetchCategoryData = async (categoryName) => {
     try {
@@ -163,6 +169,8 @@ const Event = () => {
                         vote={content.number_of_vote}
                         image={content.image}
                         link={`/event/${link}/vote/${content.candidate_id}`}
+                        voteDeadline = {voteDeadline}
+                        eventName={link}
                       />
                     ))}
                   </div>
