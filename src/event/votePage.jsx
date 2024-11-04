@@ -2,8 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { fetch } from "../../configurations/fetch";
-import moment from "moment";
-import { Header } from "./components/Header";
+import { Header } from "../components/Header.jsx"
 import { BASE_URL } from "../../configurations/URL";
 import { ThreeDots } from "react-loader-spinner";
 import { Footer } from "../components/Footer";
@@ -12,6 +11,7 @@ const VotePage = () => {
   const id = useParams();
   const candidateID = id.candidate_id;
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
   const [message, setMessage] = useState("");
   const [candidateProfile, setCandidateProfile] = useState([]);
   const [pricePerVote, setPricePerVote] = useState([]);
@@ -29,12 +29,9 @@ const VotePage = () => {
   // retrieve user id from candidate profile
   useEffect(() => {
     const user_id = candidateProfile.map((res) => res.user_id);
-
     const controller = new AbortController();
     const signal = controller.signal;
-
     fetch(`user/voteprice/${user_id[0]}`, setPricePerVote, setLoading, setMessage, signal);
-
     return () => controller.abort();
   }, [candidateProfile]);
 
@@ -84,67 +81,65 @@ const VotePage = () => {
   return (
     <>
       <Header scrollPosition={scrollPosition} />
-      
-        <main className="flex flex-col m-auto p-4 md:w-2/4 max-w-7xl">
-          <section className="bg-red-400 mt-3 p-3 h-12 text-xl">
-            <p className="font-medium text-black">Enter Vote</p>
-          </section>
+      <main className="flex flex-col m-auto p-4 md:w-2/4 max-w-7xl">
+        <section className="bg-red-400 mt-3 p-3 h-12 text-xl">
+          <p className="font-medium text-black">Enter Vote</p>
+        </section>
 
-          <section className="flex md:flex md:flex-row flex-col-reverse gap-4 bg-[#E1F7F5] mt-4 p-8 rounded-lg w-full max-w-7xl md:h-[35rem]">
-            <div className="flex flex-col gap-8">
-              <div className="flex flex-col gap-4">
-                {candidateProfile.map((candidate, id) => (
-                  <p key={id} className="text-2xl Outfit">
-                    You have selected to vote for <b>{candidate.candidate_name}</b>
-                  </p>
-                ))}
-                <p className="text-xl">
-                  Kindly note that, a vote costs{" "}
-                  <b className="text-red-600">
-                    {pricePerVote.map((price) => price.price_per_vote)}
-                  </b>{" "}
+        <section className="flex md:flex md:flex-row flex-col-reverse gap-4 bg-[#E1F7F5] mt-4 p-8 rounded-lg w-full max-w-7xl md:h-[35rem]">
+          <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4">
+              {candidateProfile.map((candidate, id) => (
+                <p key={id} className="text-2xl Outfit">
+                  You have selected to vote for <b>{candidate.candidate_name}</b>
                 </p>
-              </div>
-
-              <form onSubmit={submitVote} className="flex flex-col justify-between gap-10">
-                <div className="flex flex-col gap-4">
-                  <label className="font-bold text-black text-xl">Enter Amount of Vote</label>
-                  <input
-                    type="number"
-                    name="number_of_vote"
-                    value={vote.number_of_vote}
-                    onChange={handleVote}
-                    className="border-[0.5px] bg-gray-50 focus:bg-gray-100 px-2 rounded-md h-10 outline-none"
-                  />
-                  <p className="text-xl">
-                    Total Cost: <b className="text-black">GHC {amount}</b>{" "}
-                  </p>
-                </div>
-                <button className="flex justify-center items-center bg-[#222831] hover:bg-[#2c323a] px-2 rounded-md h-10 font-medium text-white">
-                  {loading ? (
-                    <ThreeDots
-                      visible={true}
-                      width="50"
-                      color="#ffffff"
-                      ariaLabel="infinity-spin-loading"
-                    />
-                  ) : (
-                    <p>Next</p>
-                  )}
-                </button>
-              </form>
+              ))}
+              <p className="text-xl">
+                Kindly note that, a vote costs{" "}
+                <b className="text-red-600">
+                  {pricePerVote.map((price) => price.price_per_vote)}
+                </b>{" "}
+              </p>
             </div>
 
-            {candidateProfile.map((candidate, id) => (
-              <img
-                key={id}
-                src={`${BASE_URL}/upload/${candidate.image}`}
-                className=" rounded-md md:w-2/4 h-96 object-cover"
-              />
-            ))}
-          </section>
-        </main>
-      
+            <form onSubmit={submitVote} className="flex flex-col justify-between gap-10">
+              <div className="flex flex-col gap-4">
+                <label className="font-bold text-black text-xl">Enter Amount of Vote</label>
+                <input
+                  type="number"
+                  name="number_of_vote"
+                  value={vote.number_of_vote}
+                  onChange={handleVote}
+                  className="border-[0.5px] bg-gray-50 focus:bg-gray-100 px-2 rounded-md h-10 outline-none"
+                />
+                <p className="text-xl">
+                  Total Cost: <b className="text-black">GHS {amount}</b>{" "}
+                </p>
+              </div>
+              <button className="flex justify-center items-center bg-[#222831] hover:bg-[#2c323a] px-2 rounded-md h-10 font-medium text-white">
+                {loading ? (
+                  <ThreeDots
+                    visible={true}
+                    width="50"
+                    color="#ffffff"
+                    ariaLabel="infinity-spin-loading"
+                  />
+                ) : (
+                  <p>Next</p>
+                )}
+              </button>
+            </form>
+          </div>
+
+          {candidateProfile.map((candidate, id) => (
+            <img
+              key={id}
+              src={`${BASE_URL}/upload/${candidate.image}`}
+              className=" rounded-md md:w-2/4 h-56 md:h-96 object-cover"
+            />
+          ))}
+        </section>
+      </main>
       <Footer />
     </>
   );

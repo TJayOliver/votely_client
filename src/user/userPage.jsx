@@ -9,7 +9,7 @@ import { FcOk, FcHighPriority } from "react-icons/fc";
 import { RiEdit2Fill } from "react-icons/ri";
 import { MenuBox } from "./components/MenuBox";
 import { ImageBox } from "./components/ImageBox";
-import { Header } from "./components/Header";
+import { Header } from "../components/Header.jsx"
 import { MessageBox } from "./components/MessageBox";
 import { BASE_URL } from "../../configurations/URL";
 import UserCategory from "./components/userCategory";

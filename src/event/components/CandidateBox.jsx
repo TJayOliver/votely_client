@@ -16,7 +16,7 @@ export const CandidateBox = ({ color, name, profile, vote, image, link, voteDead
       setCheckIfVotingHasEnded(true) // this indicates voting has ended
     } else {
       setCheckIfVotingHasEnded(false) // this indicates voting has not ended
-    }
+    } 
   },[])
 
   const votingPage = () => {

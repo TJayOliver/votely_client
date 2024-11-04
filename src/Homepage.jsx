@@ -5,7 +5,7 @@ import voting1 from "./assets/v1.jpg";
 import voting2 from "./assets/v2.jpg";
 import voting3 from "./assets/v3.jpg";
 import voting4 from "./assets/v4.jpg";
-import { Header } from "./components/HomeHeader";
+import { Header } from "./components/Header.jsx"
 import { Footer } from "./components/Footer";
 
 const HomepageSections = ({

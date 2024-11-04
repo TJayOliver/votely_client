@@ -1,5 +1,5 @@
 import { Footer } from "./components/Footer";
-import { Header } from "./components/HomeHeader";
+import { Header } from "./components/Header.jsx"
 import { FaRegFileAlt } from "react-icons/fa";
 
 const PrivacyPolicy = () => {

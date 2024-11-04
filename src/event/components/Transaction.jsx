@@ -2,7 +2,7 @@ import { useLocation, useParams } from "react-router-dom";
 import { BASE_URL } from "../../../configurations/URL";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Header } from "../components/Header";
+import { Header } from "../../components/Header.jsx"
 import { Footer } from "../../components/Footer";
 
 const Transaction = () => {

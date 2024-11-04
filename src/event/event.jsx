@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { fetchByID } from "../../configurations/fetch.js";
 import axios from "axios";
 import { BASE_URL } from "../../configurations/URL.js";
-import { Header } from "./components/Header.jsx";
+import {Header} from "../components/Header.jsx"
 import { CandidateBox } from "./components/CandidateBox.jsx";
 import pic1 from "../assets/Slides/s1.jpg";
 import pic2 from "../assets/Slides/s2.jpg";
