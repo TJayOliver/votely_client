@@ -2,16 +2,17 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
 
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  @apply m-0 p-0 select-none box-border scroll-smooth;
+  @apply m-0 p-0 select-none box-border scroll-smooth  
 }
 
 body {
-  min-height: 100vh;
+  @apply min-h-screen bg-[url("./assets/10.jpg")] bg-cover
 }
 
 @font-face {
@@ -41,3 +42,4 @@ body {
 .Circle {
   border-radius: 81% 19% 71% 29% / 45% 74% 25% 55%;
 }
+
