@@ -6,5 +6,5 @@ export default {
       fontFamily: { mineBold: ["mineBold"] },
     },
   },
-  plugins: [require("tailwindcss-motion")],
+  plugins: [],
 };
